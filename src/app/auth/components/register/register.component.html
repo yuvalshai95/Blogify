@@ -1,0 +1,52 @@
+<header class="header">
+  <h1>Blogify</h1>
+  <fa-icon [icon]="icon"></fa-icon>
+</header>
+<main class="body">
+  <h2>Sign up</h2>
+  <a [routerLink]="['/login']">Already have an account?</a>
+
+  <!-- <app-backend-error-messages
+     *ngIf="backendErrors$ | async"
+    [backendErrors]="backendErrors$ | async"
+   ></app-backend-error-messages> -->
+
+  <form (ngSubmit)="onSubmit(form.value)" #form="ngForm" class="auth-form">
+    <input
+      type="text"
+      ngModel
+      #username="ngModel"
+      name="username"
+      required
+      minlength="5"
+      placeholder="Username"
+    />
+    <!-- <p class="errors" *ngIf="username.touched && username.invalid" >Error in Username! {{username.errors|json}}</p> -->
+    <input 
+      type="email" 
+      ngModel 
+      #email="ngModel" 
+      name="email" 
+      required 
+      placeholder="Email" 
+      />
+    <!-- <p class="errors" *ngIf="email.touched && email.invalid" >Error in Email! {{email.errors|json}}</p> -->
+    <input 
+      type="password" 
+      ngModel 
+      #password="ngModel" 
+      name="password" 
+      required 
+      placeholder="password" 
+      />
+    <!-- <p class="errors" *ngIf="password.touched && password.invalid" >Error in Password! {{password.errors|json}}</p> -->
+    <button
+      [disabled]="form.invalid"
+      type="submit"
+      [ngClass]="{ 'btn-signup': true, disabled: form.invalid }"
+    >
+      Sign up
+    </button>
+  </form>
+</main>
+
