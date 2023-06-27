@@ -58,6 +58,12 @@
       font-weight: 700;
       margin-bottom: 25px;
       text-align: center;
+      transition: all ease-in-out 0.25s;
+
+      &:hover {
+        color: #0052cc;
+        text-decoration: underline;
+      }
     }
   
     .auth-form {
