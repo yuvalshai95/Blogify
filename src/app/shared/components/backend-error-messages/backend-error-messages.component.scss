@@ -1,0 +1,13 @@
+:host {
+  color: rgb(196, 60, 60);
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    list-style: none;
+  }
+}
