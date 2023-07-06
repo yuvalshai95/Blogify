@@ -4,13 +4,12 @@
     <fa-icon [icon]="icon"></fa-icon>
   </header>
   <main class="body">
-    <h2>Sign up</h2>
+    <h2>Login</h2>
 
 
     <bl-backend-error-messages *ngIf="vm.backendErrors" [backendErrors]="vm.backendErrors"></bl-backend-error-messages>
 
     <form (ngSubmit)="onSubmit(form.value)" #form="ngForm" class="auth-form">
-      <input type="text" ngModel #username="ngModel" name="username" required minlength="5" placeholder="Username" />
       <input type="email" ngModel #email="ngModel" name="email" required placeholder="Email" />
       <input type="password" ngModel #password="ngModel" name="password" required placeholder="password" />
 
@@ -19,9 +18,9 @@
       [disabled]="form.invalid || vm.isSubmitting"
       [ngClass]="{ 'btn-signup': true, disabled: form.invalid }"
       >
-        {{ vm.isSubmitting ? 'Signing in...' : 'Sign up' }}
+        {{ vm.isSubmitting ? 'Login in...' : 'Login' }}
       </button>
     </form>
-    <a [routerLink]="['/login']">Already have an account?</a>
+    <a [routerLink]="['/register']">Sign up here</a>
   </main>
 </ng-container>
