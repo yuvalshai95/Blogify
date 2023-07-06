@@ -8,13 +8,17 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 import { authReducer } from './app/auth/ngrx/auth.reducers';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import * as authEffects from './app/auth/ngrx/auth.effects';
 
 
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(appRoutes), 
     provideHttpClient(),
-    provideStore(),
+    provideStore({
+      router: routerReducer,
+    }),
+    provideRouterStore(),
     provideState('auth', authReducer), 
     provideEffects(authEffects),
     provideStoreDevtools({

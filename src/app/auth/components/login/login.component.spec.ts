@@ -1,10 +1,10 @@
 import {ComponentFixture, TestBed } from '@angular/core/testing';
-import { RegisterComponent } from './register.component';
 import { MockComponents, MockModule } from 'ng-mocks';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { LoginComponent } from './login.component';
 
 const TEMPLATE_COMPONENTS: any[] = [];
 const initialState = {};
@@ -14,9 +14,9 @@ class someServiceMock {
   // setServiceAccountStatus = jest.fn();
 }
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
   let store: MockStore;
   // let someService: SomeService;
 
@@ -27,7 +27,7 @@ describe('RegisterComponent', () => {
         ReactiveFormsModule,
         HttpClientTestingModule,
       ],
-      declarations: [RegisterComponent, ...MockComponents(...TEMPLATE_COMPONENTS)],
+      declarations: [LoginComponent, ...MockComponents(...TEMPLATE_COMPONENTS)],
       providers: [
         // {
         //   provide: SomeService,
@@ -42,7 +42,7 @@ describe('RegisterComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
