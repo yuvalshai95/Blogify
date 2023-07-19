@@ -1,0 +1,36 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <header class="bl-header">
+    <div class="header-container">
+      <div class="logo-container-left">
+        <a class="logo" [routerLink]="['/']">Blogify</a>
+      </div>
+
+      <div class="nav-container-right">
+        <nav class="nav-links-container">
+          <ul class="top-nav-list clean-list">
+            <bl-top-bar-item [routerLink]="['/']" text="Home"> </bl-top-bar-item>
+            <ng-container *ngIf="vm.user">
+              <bl-top-bar-item [routerLink]="['/articles', 'new']" [icon]="icons['new']" text="New Post">
+              </bl-top-bar-item>
+
+              <bl-top-bar-item [routerLink]="['/settings']" [icon]="icons['gear']" text="Settings"> </bl-top-bar-item>
+
+              <bl-top-bar-item
+                [routerLink]="['/profile', vm.user.username]"
+                [imgPath]="vm.user.image"
+                [text]="vm.user.username"
+              >
+              </bl-top-bar-item>
+            </ng-container>
+
+            <ng-container *ngIf="vm.user === null">
+              <bl-top-bar-item [routerLink]="['/login']" [icon]="icons['fire']" text="Sign in"> </bl-top-bar-item>
+
+              <bl-top-bar-item [routerLink]="['/register']" [icon]="icons['fire']" text="Sign up"> </bl-top-bar-item>
+            </ng-container>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</ng-container>

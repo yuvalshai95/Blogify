@@ -1,18 +1,14 @@
-import {ComponentFixture, TestBed } from '@angular/core/testing';
-import { RegisterComponent } from './register.component';
-import { MockComponents, MockModule } from 'ng-mocks';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { RegisterComponent } from './register.component';
 
-const TEMPLATE_COMPONENTS: any[] = [];
+
 const initialState = {};
 
-class someServiceMock {
-  // getServiceAccountAndSetEnabled = jest.fn();
-  // setServiceAccountStatus = jest.fn();
-}
+// class someServiceMock {
+//   // getServiceAccountAndSetEnabled = jest.fn();
+//   // setServiceAccountStatus = jest.fn();
+// }
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -20,24 +16,20 @@ describe('RegisterComponent', () => {
   let store: MockStore;
   // let someService: SomeService;
 
-  beforeEach((() => {
-    TestBed.configureTestingModule({
-      imports: [
-        MockModule(CommonModule),
-        ReactiveFormsModule,
-        HttpClientTestingModule,
-      ],
-      declarations: [RegisterComponent, ...MockComponents(...TEMPLATE_COMPONENTS)],
+  beforeEach((async () => {
+   await TestBed.configureTestingModule({
       providers: [
-        // {
-        //   provide: SomeService,
-        //   useClass: someServiceMock,
-        // },
+      //   // {
+      //   //   provide: SomeService,
+      //   //   useClass: someServiceMock,
+      //   // },
         provideMockStore({ initialState }),
+      //   // provideHttpClient(),
+      //   // provideHttpClientTesting(),
       ],
     })
-    .compileComponents();
-    store = TestBed.inject(MockStore);
+  .compileComponents();
+  store = TestBed.inject(MockStore);
     // someService = TestBed.inject(SomeService);
   }));
 
@@ -47,9 +39,9 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
   });
 
-  // afterEach(() => {
-  //   store?.resetSelectors();
-  // });
+  afterEach(() => {
+    store?.resetSelectors();
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
