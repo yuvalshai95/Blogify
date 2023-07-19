@@ -1,0 +1,7 @@
+<li class="top-nav-item {{ customClass }}">
+  <a class="top-nav-item-link" [routerLink]="routerLink">
+    <img *ngIf="imgPath" class="user-profile-picture" [src]="imgPath" />
+    <fa-icon *ngIf="!imgPath && icon" class="icon" [icon]="icon"></fa-icon>
+    {{ text }}
+  </a>
+</li>

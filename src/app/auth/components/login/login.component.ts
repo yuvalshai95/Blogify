@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(formValues: { email: string; password: string }) {
-    console.log(formValues);
     const request: ILoginRequest = {
       user: { ...formValues },
     };

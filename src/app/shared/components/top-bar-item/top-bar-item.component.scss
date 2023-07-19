@@ -1,0 +1,16 @@
+:host {
+  cursor: pointer;
+  &:last-of-type {
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  img {
+    height: 24px;
+    border-radius: 50%;
+  }
+}

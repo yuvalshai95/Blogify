@@ -23,7 +23,7 @@ import { selectIsSubmitting, selectValidationErrors } from '../../ngrx/auth.sele
 })
 export class RegisterComponent implements OnInit {
   public icon: IconDefinition = faFire;
-  public vm$!: Observable<any>;
+  public vm$!: Observable<{isSubmitting: boolean, backendErrors: IBackendErrors | null}>;
   public isSubmitting$!: Observable<boolean>;
   public backendErrors$!: Observable<IBackendErrors | null>;
 

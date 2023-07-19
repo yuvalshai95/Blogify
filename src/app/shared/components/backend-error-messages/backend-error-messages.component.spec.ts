@@ -1,17 +1,14 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BackendErrorMessagesComponent } from './backend-error-messages.component';
 
 describe('BackendErrorMessagesComponent', () => {
   let component: BackendErrorMessagesComponent;
   let fixture: ComponentFixture<BackendErrorMessagesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BackendErrorMessagesComponent ]
+  beforeEach((async () => {
+    await TestBed.configureTestingModule({
+      // // imports: [BackendErrorMessagesComponent],
+      // providers: [],
     })
     .compileComponents();
   }));
