@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
@@ -10,11 +10,12 @@ import { appRoutes } from './app/app.routes';
 import { authReducer } from './app/auth/ngrx/auth.reducers';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import * as authEffects from './app/auth/ngrx/auth.effects';
+import { authInterceptor } from './app/shared/interceptors/auth-interceptor';
 
 
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(appRoutes), 
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideStore({
       router: routerReducer,
     }),

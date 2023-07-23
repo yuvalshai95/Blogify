@@ -1,13 +1,35 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { PersistanceService } from 'src/app/shared/services/persistance.service';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { AuthService } from '../services/auth.service';
 import * as authActions from './auth.actions';
-import { HttpErrorResponse } from '@angular/common/http';
-import { PersistanceService } from 'src/app/shared/services/persistance.service';
-import { Router } from '@angular/router';
+
+export const getCurrentUserEffect = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService), persistanceService = inject(PersistanceService)) =>
+    actions$.pipe(
+      ofType(authActions.getCurrentUser),
+      switchMap(() => {
+        const token = persistanceService.getFromLocalStorage('accessToken');
+
+        if (!token) {
+          return of(authActions.getCurrentUserError());
+        }
+
+        return authService.getCurrentUser().pipe(
+          map((user: IUser) => authActions.getCurrentUserSuccess({ user })),
+          catchError((err: HttpErrorResponse) => {
+            return of(authActions.getCurrentUserError());
+          })
+        );
+      })
+    ),
+  { functional: true }
+);
 
 export const registerEffect = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService), persistanceService = inject(PersistanceService)) =>

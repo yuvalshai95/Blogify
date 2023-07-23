@@ -13,6 +13,10 @@ export class AuthService {
   private BASE_URL = 'https://api.realworld.io/api';
   constructor(private readonly http: HttpClient) {}
 
+  getCurrentUser(): Observable<IUser> {
+    return this.http.get<IAuthResponse>(`${this.BASE_URL}/user`).pipe(map((res) => res.user));
+  }
+
   register(registerRequestData: IRegisterRequest): Observable<IUser> {
     return this.http.post<IAuthResponse>(`${this.BASE_URL}/users`, registerRequestData).pipe(map((res) => res.user));
   }
