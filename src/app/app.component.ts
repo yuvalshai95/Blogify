@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TopBarComponent } from './shared/components/top-bar/top-bar.component';
 import { IAuthState } from './auth/interfaces/auth-state.interface';
 import { Store } from '@ngrx/store';
-import { getCurrentUser } from './auth/ngrx/auth.actions';
+import { getCurrentUser } from './auth/store/auth.actions';
 
 @Component({
   selector: 'app-root',

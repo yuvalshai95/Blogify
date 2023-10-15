@@ -10,8 +10,8 @@ import { Observable, combineLatest } from 'rxjs';
 import { IBackendErrors } from 'src/app/shared/interfaces/backend-errors.interface';
 import { IAuthState } from '../../interfaces/auth-state.interface';
 import { IRegisterRequest } from '../../interfaces/register.interface';
-import { register } from '../../ngrx/auth.actions';
-import { selectIsSubmitting, selectValidationErrors } from '../../ngrx/auth.selectors';
+import { register } from '../../store/auth.actions';
+import { selectIsSubmitting, selectValidationErrors } from '../../store/auth.selectors';
 
 @Component({
   selector: 'bl-register',
@@ -23,7 +23,7 @@ import { selectIsSubmitting, selectValidationErrors } from '../../ngrx/auth.sele
 })
 export class RegisterComponent implements OnInit {
   public icon: IconDefinition = faFire;
-  public vm$!: Observable<{isSubmitting: boolean, backendErrors: IBackendErrors | null}>;
+  public vm$!: Observable<{ isSubmitting: boolean; backendErrors: IBackendErrors | null }>;
   public isSubmitting$!: Observable<boolean>;
   public backendErrors$!: Observable<IBackendErrors | null>;
 
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     this.vm$ = combineLatest({
       isSubmitting: this.store.select(selectIsSubmitting),
       backendErrors: this.store.select(selectValidationErrors),
-    })
+    });
   }
 
   onSubmit(formValues: { username: string; email: string; password: string }) {

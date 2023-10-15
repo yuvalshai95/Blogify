@@ -1,0 +1,39 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <bl-loading *ngIf="vm.isLoading"></bl-loading>
+  <bl-error-message *ngIf="vm.error" [message]="vm.error"></bl-error-message>
+
+  <div *ngIf="vm.feed">
+    <div class="article-preview" *ngFor="let article of vm.feed.articles">
+      <div class="article-meta">
+        <a [routerLink]="['/profile', article.author.username]">
+          <img [src]="article.author.image" />
+        </a>
+        <div class="info">
+          <a [routerLink]="['/profile', article.author.username]" class="author">
+            {{ article.author.username }}
+          </a>
+          <span class="date">{{ article.createdAt | date }}</span>
+        </div>
+        <div class="favoties-container pull-xs-right">
+          ADD TO FAVORITES
+          <!-- <button class="btn btn-sm btn-outline-primary">
+            <i class="ion-heart"></i> {{ article.favoritesCount }}
+          </button> -->
+        </div>
+        <a [routerLink]="['/articles', article.slug]" class="preview-link">
+          <h1>{{ article.title }}</h1>
+          <p>{{ article.description }}</p>
+          <span>Read more...</span>
+          <bl-tag-list [tags]="article.tagList"></bl-tag-list>
+        </a>
+      </div>
+    </div>
+    <bl-pagination 
+      [total]="vm.feed.articlesCount" 
+      [limit]="limit" 
+      [url]="baseUrl"
+      [currentPage]="currentPage"
+      >
+    </bl-pagination>
+  </div>
+</ng-container>

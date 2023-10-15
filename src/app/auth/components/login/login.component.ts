@@ -7,11 +7,11 @@ import { faFire } from '@fortawesome/free-solid-svg-icons';
 import { BackendErrorMessagesComponent } from '../../../shared/components/backend-error-messages/backend-error-messages.component';
 import { CommonModule } from '@angular/common';
 import { Observable, combineLatest } from 'rxjs';
-import { selectIsSubmitting, selectValidationErrors } from '../../ngrx/auth.selectors';
+import { selectIsSubmitting, selectValidationErrors } from '../../store/auth.selectors';
 import { IAuthState } from '../../interfaces/auth-state.interface';
 import { Store } from '@ngrx/store';
 import { ILoginRequest } from '../../interfaces/login.interface';
-import { login } from '../../ngrx/auth.actions';
+import { login } from '../../store/auth.actions';
 
 @Component({
   selector: 'bl-login',

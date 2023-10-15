@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAuthState } from '../../../auth/interfaces/auth-state.interface';
 import { Observable, combineLatest } from 'rxjs';
-import { selectUser } from '../../../auth/ngrx/auth.selectors';
+import { selectUser } from '../../../auth/store/auth.selectors';
 import { IUser } from '../../interfaces/user.interface';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -20,19 +20,17 @@ import { TopBarItemComponent } from '../top-bar-item/top-bar-item.component';
 })
 export class TopBarComponent implements OnInit {
   public icons!: Record<string, IconDefinition>;
-  public vm$!: Observable<{user: IUser | null | undefined}>;
-  constructor(private store: Store<IAuthState>) {
-  }
+  public vm$!: Observable<{ user: IUser | null | undefined }>;
+  constructor(private store: Store<IAuthState>) {}
 
   public ngOnInit(): void {
     this.icons = {
       gear: faGear,
       new: faPenToSquare,
       fire: faFire,
-    }
+    };
     this.vm$ = combineLatest({
-      user: this.store.select(selectUser)
-    })
+      user: this.store.select(selectUser),
+    });
   }
-
 }
