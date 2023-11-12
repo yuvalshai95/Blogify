@@ -2,6 +2,10 @@ import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
   {
+    path: '',
+    loadChildren: () => import('./global-feed-main/global-feed.routes').then((m) => m.globalFeedRoutes),
+  },
+  {
     path: 'register',
     loadChildren: () => import('./auth/auth.routes').then((m) => m.registerRoutes),
   },
@@ -10,7 +14,11 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('./auth/auth.routes').then((m) => m.loginRoutes),
   },
   {
-    path: '',
-    loadChildren: () => import('./global-feed-main/global-feed.routes').then((m) => m.routes),
+    path: 'feed',
+    loadChildren: () => import('./your-feed-main/your-feed.routes').then((m) => m.yourFeedRoutes),
+  },
+  {
+    path: 'tags/:slug',
+    loadChildren: () => import('./tag-feed-main/tag-feed.routes').then((m) => m.tagFeedRoutes),
   },
 ];

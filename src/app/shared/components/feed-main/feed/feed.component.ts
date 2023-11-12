@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IFeedState } from './interfaces/feed-state.interface';
 import { Store } from '@ngrx/store';
 import { feedActions } from '../store/feed.actions';
@@ -22,7 +22,7 @@ import { TagListComponent } from '../../tag-list/tag-list.component';
   standalone: true,
   imports: [CommonModule, RouterLink, ErrorMessageComponent, LoadingComponent, PaginationComponent, TagListComponent],
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnChanges {
   public vm$!: Observable<{ isLoading: boolean; error: string | null; feed: IGetFeedResponse | null }>;
   public limit!: number;
   public baseUrl!: string;
@@ -51,6 +51,15 @@ export class FeedComponent implements OnInit {
       this.currentPage = Number(params['page'] || '1');
       this.fetchFeed();
     });
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    const isApiUrlChanged =
+      !changes['apiUrl'].firstChange && changes['apiUrl'].currentValue !== changes['apiUrl'].previousValue;
+
+    if (isApiUrlChanged) {
+      this.fetchFeed();
+    }
   }
 
   public fetchFeed(): void {
