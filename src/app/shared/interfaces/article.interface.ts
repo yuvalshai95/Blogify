@@ -1,5 +1,5 @@
 import { IProfile } from '../components/feed-main/feed/interfaces/profile.interface';
-import { PopularTagType } from './popularTag.type';
+import { PopularTagType } from './popular-tag.type';
 
 export interface IArticle {
   body: string;

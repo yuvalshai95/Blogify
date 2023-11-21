@@ -1,0 +1,8 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <bl-article-form
+    [initialValues]="initialValues"
+    [isSubmitting]="vm.isSubmitting"
+    [errors]="vm.backendErrors"
+    (onArticleSubmit)="onSubmit($event)"
+  ></bl-article-form>
+</ng-container>

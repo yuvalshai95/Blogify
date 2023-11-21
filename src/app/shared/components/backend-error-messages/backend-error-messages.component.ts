@@ -12,9 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class BackendErrorMessagesComponent implements OnInit {
   public errorMessages: string[] = [];
-  @Input() backendErrors: IBackendErrors = {};
+  @Input() backendErrors: IBackendErrors | null = {};
 
-  constructor() { }
+  constructor() {}
 
   public ngOnInit(): void {
     this.parseBackendErrors();
@@ -22,9 +22,8 @@ export class BackendErrorMessagesComponent implements OnInit {
 
   public parseBackendErrors(): void {
     this.errorMessages = Object.keys(this.backendErrors || {}).map((name: string) => {
-      const messages = this.backendErrors[name].join(' ');
+      const messages = this.backendErrors?.[name].join(' ');
       return `${name} ${messages}`;
     });
   }
-
 }

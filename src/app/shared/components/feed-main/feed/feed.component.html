@@ -20,7 +20,7 @@
             <i class="ion-heart"></i> {{ article.favoritesCount }}
           </button> -->
         </div>
-        <a [routerLink]="['/articles', article.slug]" class="preview-link">
+        <a [routerLink]="['/article', article.slug]" class="preview-link">
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more...</span>
@@ -28,12 +28,7 @@
         </a>
       </div>
     </div>
-    <bl-pagination 
-      [total]="vm.feed.articlesCount" 
-      [limit]="limit" 
-      [url]="baseUrl"
-      [currentPage]="currentPage"
-      >
+    <bl-pagination [total]="vm.feed.articlesCount" [limit]="limit" [url]="baseUrl" [currentPage]="currentPage">
     </bl-pagination>
   </div>
 </ng-container>

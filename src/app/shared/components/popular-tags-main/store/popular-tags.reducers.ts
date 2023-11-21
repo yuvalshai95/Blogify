@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { IPopularTagsState } from '../interfaces/popular-tags-state.interface';
 import { popularTagsActions } from './popular-tags.actions';
-import { PopularTagType } from 'src/app/shared/interfaces/popularTag.type';
+import { PopularTagType } from 'src/app/shared/interfaces/popular-tag.type';
 
 const initialState: IPopularTagsState = {
   isLoading: false,

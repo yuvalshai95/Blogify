@@ -1,0 +1,44 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="article-page">
+    <div class="banner">
+      <div class="container" *ngIf="vm.article">
+        <h1>{{ vm.article?.title }}</h1>
+        <div class="article-meta">
+          <a [routerLink]="['/profiles', vm.article?.author?.username]">
+            <img [src]="vm.article?.author?.image" alt="profile-image" />
+          </a>
+          <div class="info">
+            <a [routerLink]="['/profiles', vm.article?.author?.username]">
+              {{ vm.article?.author?.username }}
+            </a>
+            <span class="date">{{ vm.article?.createdAt }}</span>
+          </div>
+          <span *ngIf="vm.isAuthor">
+            <a [routerLink]="['/article', vm.article?.slug, 'edit']" class="btn btn-outline-secondary btn-sm">
+              <!-- replace with icon -->
+              <span>ICON</span>
+              Edit Article
+            </a>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle()">
+              <span>ICON</span>
+              Delete Article
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="container page">
+      <bl-loading *ngIf="vm.isLoading"></bl-loading>
+      <bl-error-message *ngIf="vm.error"></bl-error-message>
+
+      <div class="row article-cintent" *ngIf="vm.article">
+        <div class="col-xs-12">
+          <div>
+            <p>{{ vm.article.body }}</p>
+          </div>
+          <bl-tag-list [tags]="vm.article.tagList"></bl-tag-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

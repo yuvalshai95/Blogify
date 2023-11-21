@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { PopularTagType } from '../../interfaces/popularTag.type';
+import { PopularTagType } from '../../interfaces/popular-tag.type';
 
 @Component({
   selector: 'bl-tag-list',

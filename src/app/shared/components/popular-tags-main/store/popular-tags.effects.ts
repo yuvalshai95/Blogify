@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { PopularTagType } from 'src/app/shared/interfaces/popularTag.type';
+import { PopularTagType } from 'src/app/shared/interfaces/popular-tag.type';
 import { PopularTagService } from '../services/popular-tag.service';
 import { popularTagsActions } from './popular-tags.actions';
 

@@ -29,14 +29,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(private readonly store: Store<IAuthState>) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.vm$ = combineLatest({
       isSubmitting: this.store.select(selectIsSubmitting),
       backendErrors: this.store.select(selectValidationErrors),
     });
   }
 
-  onSubmit(formValues: { username: string; email: string; password: string }) {
+  public onSubmit(formValues: { username: string; email: string; password: string }) {
     const request: IRegisterRequest = {
       user: { ...formValues },
     };

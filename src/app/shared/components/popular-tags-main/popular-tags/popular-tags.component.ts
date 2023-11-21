@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { IPopularTagsState } from '../interfaces/popular-tags-state.interface';
 import { Store } from '@ngrx/store';
 import { popularTagsActions } from '../store/popular-tags.actions';
-import { PopularTagType } from '../../../interfaces/popularTag.type';
+import { PopularTagType } from '../../../interfaces/popular-tag.type';
 import { Observable, combineLatest } from 'rxjs';
 import { selectError, selectIsLoading, selectPopularTagsData } from '../store/popular-tags.reducers';
 import { LoadingComponent } from '../../loading/loading.component';

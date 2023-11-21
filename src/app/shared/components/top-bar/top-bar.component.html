@@ -10,7 +10,7 @@
           <ul class="top-nav-list clean-list">
             <bl-top-bar-item [routerLink]="['/']" text="Home"> </bl-top-bar-item>
             <ng-container *ngIf="vm.user">
-              <bl-top-bar-item [routerLink]="['/articles', 'new']" [icon]="icons['new']" text="New Post">
+              <bl-top-bar-item [routerLink]="['/article', 'new']" [icon]="icons['new']" text="New Post">
               </bl-top-bar-item>
 
               <bl-top-bar-item [routerLink]="['/settings']" [icon]="icons['gear']" text="Settings"> </bl-top-bar-item>
