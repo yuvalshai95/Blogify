@@ -37,11 +37,19 @@ export const authReducer = createReducer(
     validationErrors: payload.errors,
   })),
   on(authActions.getCurrentUser, (state: IAuthState) => ({ ...state, isLoading: true })),
-  on(authActions.getCurrentUserSuccess, (state: IAuthState, payload) => ({
+  on(authActions.getCurrentUserSuccess, (state: IAuthState, payload: { user: IUser }) => ({
     ...state,
     isLoading: false,
     user: payload.user,
   })),
   on(authActions.getCurrentUserError, (state: IAuthState) => ({ ...state, isLoading: false, user: null })),
-  on(routerNavigationAction, (state: IAuthState) => ({ ...state, validationErrors: null }))
+  on(authActions.updateCurrentUserSuccess, (state: IAuthState, payload: { user: IUser }) => ({
+    ...state,
+    user: payload.user,
+  })),
+  on(authActions.logout, (state: IAuthState) => ({ ...state, ...initialState, user: null })),
+  on(routerNavigationAction, (state: IAuthState) => ({
+    ...state,
+    validationErrors: null,
+  }))
 );

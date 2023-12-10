@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { PaginationComponent } from '../../pagination/pagination.component';
 import queryString from 'query-string';
 import { TagListComponent } from '../../tag-list/tag-list.component';
+import { AddToFavoritesComponent } from '../../add-to-favorites/add-to-favorites.component';
 
 @Component({
   selector: 'bl-feed',
@@ -20,7 +21,15 @@ import { TagListComponent } from '../../tag-list/tag-list.component';
   styleUrls: ['./feed.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, RouterLink, ErrorMessageComponent, LoadingComponent, PaginationComponent, TagListComponent],
+  imports: [
+    CommonModule,
+    RouterLink,
+    ErrorMessageComponent,
+    LoadingComponent,
+    PaginationComponent,
+    TagListComponent,
+    AddToFavoritesComponent,
+  ],
 })
 export class FeedComponent implements OnInit, OnChanges {
   public vm$!: Observable<{ isLoading: boolean; error: string | null; feed: IGetFeedResponse | null }>;
@@ -37,6 +46,7 @@ export class FeedComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
+    console.log('FeedComponent ngOnInit apiUrl', this.apiUrl);
     this.vm$ = combineLatest({
       isLoading: this.store.select(selectIsLoading),
       error: this.store.select(selectError),

@@ -34,4 +34,16 @@ export const appRoutes: Route[] = [
     path: 'article/:slug/edit',
     loadChildren: () => import('./edit-article/edit-article.routes').then((m) => m.editArticleRoutes),
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.routes').then((m) => m.settingsRoutes),
+  },
+  {
+    path: 'profile/:slug',
+    loadChildren: () => import('./user-profile-main/user-profile.routes').then((m) => m.userProfileRoutes),
+  },
+  {
+    path: 'profile/:slug/favorites',
+    loadChildren: () => import('./user-profile-main/user-profile.routes').then((m) => m.userProfileRoutes),
+  },
 ];

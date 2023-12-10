@@ -15,7 +15,12 @@
           <span class="date">{{ article.createdAt | date }}</span>
         </div>
         <div class="favoties-container pull-xs-right">
-          ADD TO FAVORITES
+          <!-- ADD TO FAVORITES -->
+          <bl-add-to-favorites
+            [isFavorited]="article.favorited"
+            [articleSlug]="article.slug"
+            [favoritedCount]="article.favoritesCount"
+          />
           <!-- <button class="btn btn-sm btn-outline-primary">
             <i class="ion-heart"></i> {{ article.favoritesCount }}
           </button> -->

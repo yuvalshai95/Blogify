@@ -8,6 +8,7 @@ import { PersistanceService } from 'src/app/shared/services/persistance.service'
 import { IUser } from '../../shared/interfaces/user.interface';
 import { AuthService } from '../services/auth.service';
 import * as authActions from './auth.actions';
+import { IUserRequest } from '../../shared/interfaces/user-request.interface';
 
 export const getCurrentUserEffect = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService), persistanceService = inject(PersistanceService)) =>
@@ -85,6 +86,34 @@ export const redirectAfterLoginEffect = createEffect(
     actions$.pipe(
       ofType(authActions.loginSuccess),
       tap(() => {
+        router.navigateByUrl('/');
+      })
+    ),
+  { functional: true, dispatch: false }
+);
+
+export const updateCurrentUserEffect = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService)) =>
+    actions$.pipe(
+      ofType(authActions.updateCurrentUser),
+      switchMap(({ currentUserRequest }: { currentUserRequest: IUserRequest }) => {
+        return authService.updateCurrentUser(currentUserRequest).pipe(
+          map((user: IUser) => authActions.updateCurrentUserSuccess({ user })),
+          catchError((err: HttpErrorResponse) => {
+            return of(authActions.updateCurrentUserError({ errors: err?.error?.errors || 'Some Error Occurred' }));
+          })
+        );
+      })
+    ),
+  { functional: true }
+);
+
+export const logoutEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router), persistanceService = inject(PersistanceService)) =>
+    actions$.pipe(
+      ofType(authActions.logout),
+      tap(() => {
+        persistanceService.setToLocalStorage('accessToken', '');
         router.navigateByUrl('/');
       })
     ),
